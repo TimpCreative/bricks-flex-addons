@@ -39,5 +39,6 @@ if ( ! function_exists( 'bfa_plugin' ) ) {
     do_action( 'bfa_plugin_loaded' );
 }
 
-/*test*/
-/*test 2*/
+// === Flex Addons bootstrap ===
+define( 'FLEX_ADDONS_PATH', plugin_dir_path( __FILE__ ) );
+require_once FLEX_ADDONS_PATH . 'includes/loader.php';
