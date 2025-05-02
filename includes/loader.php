@@ -12,7 +12,7 @@ spl_autoload_register( function ( $class ) {
 });
 
 add_filter( 'bricks/elements/categories', function ( $cats ) {
-  $cats['flex-layout'] = esc_html__( 'Flex Layout', 'flex-addons' );
+  $cats['flex-layout'] = 'Flex Layout';
   return $cats;
 });
 
