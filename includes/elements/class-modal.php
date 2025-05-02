@@ -1,88 +1,56 @@
 <?php
 namespace FlexAddons\Elements;
 
-use Bricks\Element;
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-if ( ! defined( 'ABSPATH' ) ) {
-    exit;
-}
+class Modal extends \Bricks\Element {
 
-class Modal extends Element {
+  /* ---------- Meta ---------- */
+  public $category = 'flex-layout';       // shows as new category
+  public $name     = 'flex-modal';        // must be unique, lowercase
+  public $icon     = 'fas fa-window-maximize';
+  public $css_selector = '.flex‑modal__inner';    // default CSS target
 
-    // 1. Meta -----------------
-    public $category = 'flex-layout';
-    public $name     = 'flex-modal';
-    public $label    = 'Modal / Off‑Canvas';
-    public $icon     = 'fa-solid fa-window-maximize';  // any Font Awesome class
+  /* ---------- REQUIRED builder labels ---------- */
+  public function get_label()   { return esc_html__( 'Modal / Off‑Canvas', 'flex-addons' ); }
+  public function get_keywords(){ return [ 'modal', 'popup', 'offcanvas', 'flex' ]; }
 
-    // 2. Controls -------------
-    public function set_controls() {
+  /* ---------- Controls (simplified for now) --- */
+  public function set_controls() {
+    $this->controls['trigger_text'] = [
+      'tab'     => 'content',
+      'label'   => esc_html__( 'Trigger Label', 'flex-addons' ),
+      'type'    => 'text',
+      'default' => 'Open Modal',
+    ];
+    $this->controls['modal_content'] = [
+      'tab'   => 'content',
+      'label' => esc_html__( 'Modal Content', 'flex-addons' ),
+      'type'  => 'textarea',
+    ];
+    $this->controls['type'] = [
+      'tab'     => 'content',
+      'label'   => esc_html__( 'Type', 'flex-addons' ),
+      'type'    => 'select',
+      'options' => [ 'modal' => 'Centered Modal', 'offcanvas' => 'Slide‑in' ],
+      'default' => 'modal',
+    ];
+  }
 
-        // Trigger text
-        $this->controls['trigger_text'] = [
-            'tab'   => 'content',
-            'label' => 'Trigger Label',
-            'type'  => 'text',
-            'default' => 'Open Modal',
-        ];
-
-        // Content textarea
-        $this->controls['modal_content'] = [
-            'tab'   => 'content',
-            'label' => 'Modal Content',
-            'type'  => 'textarea',
-            'placeholder' => 'Add your content…',
-        ];
-
-        // Position switch (modal vs off‑canvas)
-        $this->controls['type'] = [
-            'tab'   => 'content',
-            'label' => 'Type',
-            'type'  => 'select',
-            'options' => [
-                'modal'      => 'Centered Modal',
-                'offcanvas'  => 'Slide‑in',
-            ],
-            'default' => 'modal',
-        ];
-    }
-
-    // 3. Render ---------------
-    public function render() {
-        $id      = 'flex-modal-' . $this->id;
-        $type    = $this->settings['type'] ?? 'modal';
-        $trigger = esc_html( $this->settings['trigger_text'] ?? 'Open' );
-        $content = wp_kses_post( $this->settings['modal_content'] ?? '' );
-
-        ?>
-        <button class="flex‑modal‑trigger" data-target="<?php echo esc_attr( $id ); ?>">
-            <?php echo $trigger; ?>
-        </button>
-
-        <div id="<?php echo esc_attr( $id ); ?>" class="flex‑modal <?php echo esc_attr( $type ); ?>" hidden>
-            <div class="flex‑modal__inner">
-                <button class="flex‑modal__close" aria-label="Close">&times;</button>
-                <?php echo $content; ?>
-            </div>
-        </div>
-        <?php
-    }
-
-    // 4. Assets ---------------
-    public function enqueue_scripts() {
-        wp_enqueue_style(
-            'flex-modal',
-            plugins_url( '../../assets/css/modal.css', __FILE__ ),
-            [],
-            '0.1'
-        );
-
-        wp_enqueue_script(
-            'flex-modal',
-            plugins_url( '../../assets/js/modal.js', __FILE__ ),
-            [],
-            '0.1',
-            true
-        );
-    }
+  /* ---------- Render ---------- */
+  public function render() {
+    $id   = 'flex-modal-' . $this->id;
+    $type = $this->settings['type'] ?? 'modal';
+    ?>
+    <button class="flex‑modal‑trigger" data-target="<?php echo esc_attr( $id ); ?>">
+      <?php echo esc_html( $this->settings['trigger_text'] ?? 'Open' ); ?>
+    </button>
+    <div id="<?php echo esc_attr( $id ); ?>" class="flex‑modal <?php echo esc_attr( $type ); ?>" hidden>
+      <div class="flex‑modal__inner">
+        <button class="flex‑modal__close" aria-label="Close">&times;</button>
+        <?php echo wp_kses_post( $this->settings['modal_content'] ?? '' ); ?>
+      </div>
+    </div>
+    <?php
+  }
 }

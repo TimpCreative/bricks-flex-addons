@@ -1,51 +1,44 @@
 <?php
-// Abort if Bricks Builder isn’t active
-if ( ! defined( 'BRICKS_VERSION' ) ) {
-    return;
-}
+// Bail if Bricks isn’t active
+if ( ! defined( 'BRICKS_VERSION' ) ) { return; }
 
-/**
- * PSR‑4‑ish autoloader for our classes.
- * Classes live under namespace FlexAddons\*
- */
-spl_autoload_register(
-    function ( $class ) {
-        $prefix = 'FlexAddons\\';
-        if ( strpos( $class, $prefix ) !== 0 ) {
-            return;
-        }
-        $path = __DIR__ . '/' . str_replace(
-            '\\',
-            '/',
-            substr( $class, strlen( $prefix ) )
-        ) . '.php';
+/* ------------------ 1. PSR‑4 autoloader ------------------ */
+spl_autoload_register( function ( $class ) {
+  $prefix = 'FlexAddons\\';
+  if ( str_starts_with( $class, $prefix ) ) {
+    $path = __DIR__ . '/' . str_replace( '\\', '/', substr( $class, strlen( $prefix ) ) ) . '.php';
+    if ( file_exists( $path ) ) { require_once $path; }
+  }
+});
 
-        if ( file_exists( $path ) ) {
-            require_once $path;
-        }
+/* ------------------ 2. Register custom elements ------------------ */
+add_action( 'init', function () {
+  // Register by file path (Bricks’ preferred way → faster)
+  \Bricks\Elements::register_element( __DIR__ . '/elements/class-modal.php' );
+}, 11 );
+
+/* ------------------ 3. Dynamic‑data tags ------------------ */
+/* 3‑A  Tag list shown inside the Builder */
+add_filter( 'bricks/dynamic_tags_list', function ( $tags ) {
+  $tags[] = [ 'name' => '{parent_page_title}',   'label' => 'Parent Page Title',   'group' => 'Flex Addons' ];
+  $tags[] = [ 'name' => '{parent_page_content}', 'label' => 'Parent Page Content', 'group' => 'Flex Addons' ];
+  return $tags;
+});
+
+/* 3‑B  Supply the value when Bricks renders tags */
+add_filter( 'bricks/dynamic_data/render_tag', function ( $tag, $post, $context ) {
+
+  if ( '{parent_page_title}' === $tag ) {
+    return $post->post_parent ? get_the_title( $post->post_parent ) : '';
+  }
+
+  if ( '{parent_page_content}' === $tag ) {
+    if ( $post->post_parent ) {
+      $parent = get_post( $post->post_parent );
+      return apply_filters( 'the_content', $parent->post_content );
     }
-);
+    return '';
+  }
 
-/**
- * Register all custom Bricks elements.
- */
-add_action(
-    'init',
-    function () {
-        // Elements
-        \Bricks\Elements::register_element( new FlexAddons\Elements\Modal() );
-    },
-    11    // after Bricks has registered its core elements
-);
-
-/**
- * Register dynamic‑data tags
- */
-add_filter(
-    'bricks/dynamic_data_tags',
-    function ( $tags ) {
-        $tags['parent_page_title']   = new FlexAddons\DynamicTags\ParentPageTitle();
-        $tags['parent_page_content'] = new FlexAddons\DynamicTags\ParentPageContent();
-        return $tags;
-    }
-);
+  return $tag; // leave untouched for other plugins / Bricks
+}, 20, 3 );
