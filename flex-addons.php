@@ -40,3 +40,4 @@ if ( ! function_exists( 'bfa_plugin' ) ) {
 }
 
 /*test*/
+/*test 2*/
