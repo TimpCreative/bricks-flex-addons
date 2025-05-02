@@ -38,3 +38,5 @@ if ( ! function_exists( 'bfa_plugin' ) ) {
     // Signal that SDK was initiated.
     do_action( 'bfa_plugin_loaded' );
 }
+
+/*test*/
