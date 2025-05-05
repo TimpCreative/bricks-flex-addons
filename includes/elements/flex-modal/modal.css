@@ -1,0 +1,107 @@
+.bfa-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--fa-backdrop, rgba(0,0,0,.55));
+  backdrop-filter: blur(var(--fa-blur, 2px));
+  z-index: 9999;
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    opacity var(--fa-dur,.25s) var(--fa-ease,ease),
+    visibility var(--fa-dur,.25s) var(--fa-ease,ease);
+}
+
+.bfa-modal.bfa-modal--open {
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.bfa-modal__inner {
+  position: relative;
+  background: var(--fa-panel-bg,#fff);
+  width: 100%;
+  padding: var(--fa-pad,32px);
+  box-shadow: var(--fa-shadow,0 10px 30px rgba(0,0,0,.15));
+  transform: translateY(-30px);
+  transition: transform var(--fa-dur,.25s) var(--fa-ease,ease);
+}
+
+.offcanvas-left .bfa-modal__inner, .offcanvas-right .bfa-modal__inner,  {
+  width: 25%;
+}
+
+/* Slide‑in from the right */
+.bfa-modal.offcanvas.offcanvas-right {
+  justify-content: flex-end;
+  align-items: stretch;
+}
+.bfa-modal.offcanvas.offcanvas-right .bfa-modal__inner {
+  transform: translateX(100%);
+}
+
+/* Slide‑in from the left */
+.bfa-modal.offcanvas.offcanvas-left {
+  justify-content: flex-start;
+  align-items: stretch;
+}
+.bfa-modal.offcanvas.offcanvas-left .bfa-modal__inner {
+  transform: translateX(-100%);
+}
+
+/* Slide‑in from the top */
+.bfa-modal.offcanvas.offcanvas-top {
+  justify-content: center;
+  align-items: flex-start;
+}
+.bfa-modal.offcanvas.offcanvas-top .bfa-modal__inner {
+  transform: translateY(-100%);
+}
+
+/* Slide‑in from the bottom */
+.bfa-modal.offcanvas.offcanvas-bottom {
+  justify-content: center;
+  align-items: flex-end;
+}
+.bfa-modal.offcanvas.offcanvas-bottom .bfa-modal__inner {
+  transform: translateY(100%);
+}
+
+/* When open, slide the panel into view */
+
+/* Right */
+.bfa-modal.offcanvas.offcanvas-right.bfa-modal--open .bfa-modal__inner {
+  transform: translateX(0);
+}
+
+/* Left */
+.bfa-modal.offcanvas.offcanvas-left.bfa-modal--open .bfa-modal__inner {
+  transform: translateX(0);
+}
+
+/* Top */
+.bfa-modal.offcanvas.offcanvas-top.bfa-modal--open .bfa-modal__inner {
+  transform: translateY(0);
+}
+
+/* Bottom */
+.bfa-modal.offcanvas.offcanvas-bottom.bfa-modal--open .bfa-modal__inner {
+  transform: translateY(0);
+}
+
+
+.bfa-modal.bfa-modal--open .bfa-modal__inner { transform: none; }
+
+.bfa-modal__close {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+  background: none;
+  border: none;
+  font-size: var(--fa-close-size,1.5rem);
+  line-height: 1;
+  color: var(--fa-close-color,#000);
+  cursor: pointer;
+}

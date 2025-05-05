@@ -39,6 +39,38 @@ if ( ! function_exists( 'bfa_plugin' ) ) {
     do_action( 'bfa_plugin_loaded' );
 }
 
-// === Flex Addons bootstrap ===
-define( 'FLEX_ADDONS_PATH', plugin_dir_path( __FILE__ ) );
-require_once FLEX_ADDONS_PATH . 'includes/loader.php';
+/* =========================================================
+ *  FLEX ADDONS BOOTSTRAP
+ * =========================================================
+ */
+
+/* ---------- 1.  Load Dynamic‑Tag classes immediately ---------- */
+/*     (filters must exist before Bricks parses page content)    */
+require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-title.php';
+require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-content.php';
+// ↳ add more tag-class files here as you create them
+
+
+/* ---------- 2.  Register custom elements on init ------------- */
+add_action( 'init', function () {
+
+    /* 2‑A  Element category */
+    add_filter( 'bricks/elements/categories', function ( $cats ) {
+        $cats['flex-addons'] = 'Flex Addons';
+        return $cats;
+    } );
+
+    /* 2‑B  Element files */
+    $element_files = [
+        __DIR__ . '/includes/elements/flex-modal/modal.php',
+        // add more element paths here…
+    ];
+
+    foreach ( $element_files as $file ) {
+        if ( is_readable( $file ) ) {
+            require_once $file;
+            Bricks\Elements::register_element( $file );
+        }
+    }
+
+}, 11 );   // after Bricks core elements are registered
