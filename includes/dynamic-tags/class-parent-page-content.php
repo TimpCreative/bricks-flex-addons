@@ -8,8 +8,8 @@ add_filter( 'bricks/dynamic_tags_list', 'my_prefix_add_parent_content_tag' );
 function my_prefix_add_parent_content_tag( $tags ) {
     $tags[] = [
         'name'  => '{parent_page_content}',
-        'label' => 'Parent Page Content (Text)',
-        'group' => 'Custom', // Optional grouping in the builder
+        'label' => 'Parent Page Content',
+        'group' => 'Flex Addons', // Optional grouping in the builder
     ];
     return $tags;
 }

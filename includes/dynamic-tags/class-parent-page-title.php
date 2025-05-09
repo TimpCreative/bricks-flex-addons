@@ -9,7 +9,7 @@ function my_prefix_add_parent_page_tag_to_builder( $tags ) {
     $tags[] = [
         'name'  => '{parent_page_title}',
         'label' => 'Parent Page Title',
-        'group' => 'Custom', // Optional grouping in the builder
+        'group' => 'Flex Addons', // Optional grouping in the builder
     ];
     return $tags;
 }

@@ -11,7 +11,7 @@ use Bricks\Frontend;
 class BFA_Flex_Modal extends \Bricks\Element {
 
 	/* ---------- Meta ---------- */
-	public $category = 'flex-addons';
+	public $category = 'Flex Addons Layout';
 	public $name     = 'flex-modal';
 	public $icon     = 'fa-solid fa-window-maximize';
 	public $nestable = true;
@@ -106,7 +106,7 @@ public function render() {
     // 1) wrapper for inline CSS in Builder
     echo '<div class="bfa-modal-container">';
     if ( bricks_is_builder() && ! empty( $this->settings['preview_open'] ) ) {
-        $css = plugin_dir_path( __FILE__ ) . 'modal.css';
+        $css = plugin_dir_path( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'assets/css/modal.css';
         if ( file_exists( $css ) ) {
             echo '<style>' . file_get_contents( $css ) . '</style>';
         }
@@ -144,7 +144,7 @@ public function render() {
 
 	/* ---------- Enqueue JS & CSS ---------- */
 	public function enqueue_scripts() {
-	    $base = plugin_dir_url( __FILE__ );
+	    $base = plugin_dir_url( dirname( dirname( dirname( __FILE__ ) ) ) ) . 'assets/';
 
 	    // 1️⃣ Load Font Awesome from CDN (or self‑hosted if you prefer)
 	    wp_enqueue_style(
@@ -157,14 +157,14 @@ public function render() {
 	    // 2️⃣ Then your modal CSS/JS as before
 	    wp_enqueue_style(
 	        'bfa-modal',
-	        $base . 'modal.css',
+	        $base . 'css/modal.css',
 	        [ 'bfa-fontawesome' ],  // ensure FontAwesome is loaded first
 	        '0.4'
 	    );
 
 	    wp_enqueue_script(
 	        'bfa-modal',
-	        $base . 'modal.js',
+	        $base . 'js/modal.js',
 	        [],
 	        '0.4',
 	        true

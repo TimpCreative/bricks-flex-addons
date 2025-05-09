@@ -1,0 +1,84 @@
+.bfa-flip-box {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    perspective: 1000px;
+    margin: 0 auto;
+}
+
+.bfa-flip-box__front,
+.bfa-flip-box__back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    transition: transform var(--flip-duration, 0.6s) ease;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    background-color: #97a0d6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.bfa-flip-box__back {
+    background-color: #64e87d;
+}
+
+/* Click mode cursor */
+.bfa-flip-box--click {
+    cursor: pointer;
+}
+
+/* Horizontal flip */
+.bfa-flip-box--horizontal .bfa-flip-box__back {
+    transform: rotateY(-180deg);
+}
+
+.bfa-flip-box--horizontal.bfa-flip-box--hover:hover .bfa-flip-box__front {
+    transform: rotateY(180deg);
+}
+
+.bfa-flip-box--horizontal.bfa-flip-box--hover:hover .bfa-flip-box__back {
+    transform: rotateY(0);
+}
+
+.bfa-flip-box--horizontal.bfa-flip-box--click.is-flipped .bfa-flip-box__front {
+    transform: rotateY(180deg);
+}
+
+.bfa-flip-box--horizontal.bfa-flip-box--click.is-flipped .bfa-flip-box__back {
+    transform: rotateY(0);
+}
+
+/* Vertical flip */
+.bfa-flip-box--vertical .bfa-flip-box__back {
+    transform: rotateX(-180deg);
+}
+
+.bfa-flip-box--vertical.bfa-flip-box--hover:hover .bfa-flip-box__front {
+    transform: rotateX(180deg);
+}
+
+.bfa-flip-box--vertical.bfa-flip-box--hover:hover .bfa-flip-box__back {
+    transform: rotateX(0);
+}
+
+.bfa-flip-box--vertical.bfa-flip-box--click.is-flipped .bfa-flip-box__front {
+    transform: rotateX(180deg);
+}
+
+.bfa-flip-box--vertical.bfa-flip-box--click.is-flipped .bfa-flip-box__back {
+    transform: rotateX(0);
+}
+
+/* Content wrapper */
+.bfa-flip-box__content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
