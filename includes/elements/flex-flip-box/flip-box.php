@@ -89,10 +89,10 @@ class BFA_Flip_Box extends \Bricks\Element {
         $classes[] = 'bfa-flip-box--' . $trigger_type;
         $classes[] = 'bfa-flip-box--' . $direction;
 
-        // 1) Flip box container
+        // Output the flip box container
         echo '<div id="' . esc_attr( $id ) . '" class="' . esc_attr( implode( ' ', $classes ) ) . '" style="--flip-duration: ' . esc_attr( $duration ) . 's">';
 
-        // 2) Try rendering any nested children (Builder defaults or user drops)
+        // Try rendering any nested children (Builder defaults or user drops)
         $inner = \Bricks\Frontend::render_children( $this );
 
         if ( trim( $inner ) ) {
@@ -134,4 +134,4 @@ class BFA_Flip_Box extends \Bricks\Element {
             true
         );
     }
-}
+} 
