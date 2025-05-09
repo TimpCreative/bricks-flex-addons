@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Flex Addons
  * Description: Bricks Flex Addons Premium Elements
- * Version:     0.2.0
+ * Version:     0.2.2-alpha
  * Author:      Your Name
  */
 
@@ -35,9 +35,14 @@ if ( ! function_exists( 'bfa_plugin' ) ) {
                     'is_require_payment' => true,
                 ),
                 'menu'                => array(
-                    'slug'     => 'bricks-flex-addons',
-                    'first-path'     => 'admin.php?page=bricks-flex-addons',
+                    'slug'           => 'flex-addons',
+                    'first-path'     => 'admin.php?page=flex-addons',
                     'support'        => false,
+                    'account'        => true,
+                    'pricing'        => true,
+                    'addons'         => true,
+                    'contact'        => true,
+                    'affiliation'    => false,
                 ),
             ) );
         }
@@ -50,6 +55,9 @@ if ( ! function_exists( 'bfa_plugin' ) ) {
     // Signal that SDK was initiated.
     do_action( 'bfa_plugin_loaded' );
 }
+
+// Include admin menu and pages
+require_once __DIR__ . '/includes/admin/menu-pages.php';
 
 /* =========================================================
  *  2) Dynamic Tags: load for any paid section or Pro
@@ -98,6 +106,7 @@ add_action( 'init', function() {
     }, 10, 1 );
 
     $is_dev = defined( 'WP_FS__DEV_MODE' ) && WP_FS__DEV_MODE;
+    $settings = get_option( 'bfa_settings', array() );
 
     // ─── Layout / Navigation ───
     if ( $is_dev
@@ -109,12 +118,24 @@ add_action( 'init', function() {
             )
         )
     ) {
-        $files = array(
-            __DIR__ . '/includes/elements/flex-modal/modal.php',
-            __DIR__ . '/includes/elements/flex-flip-box/flip-box.php',
-            __DIR__ . '/includes/elements/flex-style-card/style-card.php',
-            // …add layout/navigation elements here
-        );
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['layout_navigation']['enabled'] ) ) {
+            return;
+        }
+
+        $files = array();
+        
+        // Only include enabled elements
+        if ( ! empty( $settings['elements']['layout_navigation']['modal'] ) ) {
+            $files[] = __DIR__ . '/includes/elements/flex-modal/modal.php';
+        }
+        if ( ! empty( $settings['elements']['layout_navigation']['flip_box'] ) ) {
+            $files[] = __DIR__ . '/includes/elements/flex-flip-box/flip-box.php';
+        }
+        if ( ! empty( $settings['elements']['layout_navigation']['style_card'] ) ) {
+            $files[] = __DIR__ . '/includes/elements/flex-style-card/style-card.php';
+        }
+
         foreach ( $files as $file ) {
             if ( is_readable( $file ) ) {
                 require_once $file;
@@ -133,6 +154,11 @@ add_action( 'init', function() {
             )
         )
     ) {
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['interactive_animation']['enabled'] ) ) {
+            return;
+        }
+
         $files = array(
             // __DIR__ . '/includes/elements/interactive-animation/your-element.php',
         );
@@ -154,6 +180,11 @@ add_action( 'init', function() {
             )
         )
     ) {
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['media_galleries']['enabled'] ) ) {
+            return;
+        }
+
         $files = array(
             // __DIR__ . '/includes/elements/media-galleries/your-element.php',
         );
@@ -175,6 +206,11 @@ add_action( 'init', function() {
             )
         )
     ) {
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['content_typography']['enabled'] ) ) {
+            return;
+        }
+
         $files = array(
             // __DIR__ . '/includes/elements/content-typography/your-element.php',
         );
@@ -196,6 +232,11 @@ add_action( 'init', function() {
             )
         )
     ) {
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['data_displays']['enabled'] ) ) {
+            return;
+        }
+
         $files = array(
             // __DIR__ . '/includes/elements/data-displays/your-element.php',
         );
@@ -217,6 +258,11 @@ add_action( 'init', function() {
             )
         )
     ) {
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['woo_enhancements']['enabled'] ) ) {
+            return;
+        }
+
         $files = array(
             // __DIR__ . '/includes/elements/woo-enhancements/your-element.php',
         );
@@ -238,6 +284,11 @@ add_action( 'init', function() {
             )
         )
     ) {
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['utility_admin']['enabled'] ) ) {
+            return;
+        }
+
         $files = array(
             // __DIR__ . '/includes/elements/utility-admin/your-element.php',
         );
@@ -259,6 +310,11 @@ add_action( 'init', function() {
             )
         )
     ) {
+        // Check if the section is enabled
+        if ( empty( $settings['elements']['logic_conditions']['enabled'] ) ) {
+            return;
+        }
+
         $files = array(
             // __DIR__ . '/includes/elements/logic-conditions/your-element.php',
         );
