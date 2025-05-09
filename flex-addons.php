@@ -112,6 +112,7 @@ add_action( 'init', function() {
         $files = array(
             __DIR__ . '/includes/elements/flex-modal/modal.php',
             __DIR__ . '/includes/elements/flex-flip-box/flip-box.php',
+            __DIR__ . '/includes/elements/flex-style-card/style-card.php',
             // …add layout/navigation elements here
         );
         foreach ( $files as $file ) {

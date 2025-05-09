@@ -1,0 +1,22 @@
+.bfa-style-card {
+    width: 300px;
+    height: 400px;
+    transition: all 0.3s ease;
+}
+
+.bfa-style-card__content {
+    background-color: #f8f9fa;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    height: 100%;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect */
+.bfa-style-card:hover .bfa-style-card__content {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+} 
