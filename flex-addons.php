@@ -85,6 +85,9 @@ $load_tags = $is_dev
 if ( $load_tags ) {
     require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-title.php';
     require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-content.php';
+    require_once __DIR__ . '/includes/dynamic-tags/class-current-user-first-name.php';
+    require_once __DIR__ . '/includes/dynamic-tags/class-current-user-role.php';
+    require_once __DIR__ . '/includes/dynamic-tags/class-device-type.php';
 }
 /* </fs_premium_only> */
 
