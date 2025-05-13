@@ -157,6 +157,9 @@ function bfa_settings_page_html() {
                 'enabled' => isset( $_POST['bfa_dynamic_tags']['enabled'] ),
                 'parent_page_title' => isset( $_POST['bfa_dynamic_tags']['parent_page_title'] ),
                 'parent_page_content' => isset( $_POST['bfa_dynamic_tags']['parent_page_content'] ),
+                'current_user_first_name' => isset( $_POST['bfa_dynamic_tags']['current_user_first_name'] ),
+                'current_user_role' => isset( $_POST['bfa_dynamic_tags']['current_user_role'] ),
+                'device_type' => isset( $_POST['bfa_dynamic_tags']['device_type'] ),
             ),
         );
         update_option( 'bfa_settings', $settings );
@@ -201,6 +204,9 @@ function bfa_settings_page_html() {
             'enabled' => true,
             'parent_page_title' => true,
             'parent_page_content' => true,
+            'current_user_first_name' => true,
+            'current_user_role' => true,
+            'device_type' => true,
         ),
     ) );
     ?>
@@ -362,6 +368,42 @@ function bfa_settings_page_html() {
                                                value="1" 
                                                <?php checked( $settings['dynamic_tags']['parent_page_content'] ); ?>>
                                         Enable Parent Page Content tag
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Current User First Name</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" 
+                                               name="bfa_dynamic_tags[current_user_first_name]" 
+                                               value="1" 
+                                               <?php checked( $settings['dynamic_tags']['current_user_first_name'] ); ?>>
+                                        Enable Current User First Name tag
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Current User Role</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" 
+                                               name="bfa_dynamic_tags[current_user_role]" 
+                                               value="1" 
+                                               <?php checked( $settings['dynamic_tags']['current_user_role'] ); ?>>
+                                        Enable Current User Role tag
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Device Type</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" 
+                                               name="bfa_dynamic_tags[device_type]" 
+                                               value="1" 
+                                               <?php checked( $settings['dynamic_tags']['device_type'] ); ?>>
+                                        Enable Device Type tag
                                     </label>
                                 </td>
                             </tr>

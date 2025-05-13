@@ -83,11 +83,25 @@ $load_tags = $is_dev
     );
 
 if ( $load_tags ) {
-    require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-title.php';
-    require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-content.php';
-    require_once __DIR__ . '/includes/dynamic-tags/class-current-user-first-name.php';
-    require_once __DIR__ . '/includes/dynamic-tags/class-current-user-role.php';
-    require_once __DIR__ . '/includes/dynamic-tags/class-device-type.php';
+    $settings = get_option( 'bfa_settings', array() );
+    $dynamic_tags = isset( $settings['dynamic_tags'] ) ? $settings['dynamic_tags'] : array();
+
+    // Only load tags that are enabled in settings
+    if ( isset( $dynamic_tags['parent_page_title'] ) && $dynamic_tags['parent_page_title'] ) {
+        require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-title.php';
+    }
+    if ( isset( $dynamic_tags['parent_page_content'] ) && $dynamic_tags['parent_page_content'] ) {
+        require_once __DIR__ . '/includes/dynamic-tags/class-parent-page-content.php';
+    }
+    if ( isset( $dynamic_tags['current_user_first_name'] ) && $dynamic_tags['current_user_first_name'] ) {
+        require_once __DIR__ . '/includes/dynamic-tags/class-current-user-first-name.php';
+    }
+    if ( isset( $dynamic_tags['current_user_role'] ) && $dynamic_tags['current_user_role'] ) {
+        require_once __DIR__ . '/includes/dynamic-tags/class-current-user-role.php';
+    }
+    if ( isset( $dynamic_tags['device_type'] ) && $dynamic_tags['device_type'] ) {
+        require_once __DIR__ . '/includes/dynamic-tags/class-device-type.php';
+    }
 }
 /* </fs_premium_only> */
 
