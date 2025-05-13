@@ -421,6 +421,7 @@ function bfa_settings_page_html() {
             display: grid;
             grid-template-columns: minmax(320px, 2fr) minmax(320px, 2fr);
             gap: 25px 25px;
+            margin-top: 25px;
             margin-bottom: 32px;
             max-width: 1000px;
             background: none;
@@ -504,10 +505,6 @@ function bfa_settings_page_html() {
             color: #666;
             font-style: italic;
             margin: 0;
-        }
-        /* Add margin to submit button */
-        .wrap #submit {
-            margin-top: 20px;
         }
     </style>
 
