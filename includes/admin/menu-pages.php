@@ -59,6 +59,7 @@ function bfa_options_page_html() {
                             <li><strong>Modal</strong> - Create beautiful modals with nested content</li>
                             <li><strong>Flip Box</strong> - Interactive flip boxes with front and back content</li>
                             <li><strong>Stylable Card</strong> - Fully customizable card element</li>
+                            <li><strong>Before/After Slider</strong> - Interactive image comparison slider</li>
                         </ul>
                     </div>
                     
@@ -126,12 +127,15 @@ function bfa_settings_page_html() {
                     'modal' => isset( $_POST['bfa_elements']['layout_navigation']['modal'] ),
                     'flip_box' => isset( $_POST['bfa_elements']['layout_navigation']['flip_box'] ),
                     'style_card' => isset( $_POST['bfa_elements']['layout_navigation']['style_card'] ),
+                    'back_to_top' => isset( $_POST['bfa_elements']['layout_navigation']['back_to_top'] ),
+                    'slider' => isset( $_POST['bfa_elements']['layout_navigation']['slider'] ),
                 ),
                 'interactive_animation' => array(
                     'enabled' => isset( $_POST['bfa_elements']['interactive_animation']['enabled'] ),
                 ),
                 'media_galleries' => array(
                     'enabled' => isset( $_POST['bfa_elements']['media_galleries']['enabled'] ),
+                    'slider' => isset( $_POST['bfa_elements']['media_galleries']['slider'] ),
                 ),
                 'content_typography' => array(
                     'enabled' => isset( $_POST['bfa_elements']['content_typography']['enabled'] ),
@@ -167,12 +171,15 @@ function bfa_settings_page_html() {
                 'modal' => true,
                 'flip_box' => true,
                 'style_card' => true,
+                'back_to_top' => true,
+                'slider' => false,
             ),
             'interactive_animation' => array(
                 'enabled' => false,
             ),
             'media_galleries' => array(
                 'enabled' => false,
+                'slider' => false,
             ),
             'content_typography' => array(
                 'enabled' => false,
@@ -254,6 +261,24 @@ function bfa_settings_page_html() {
                                     </label>
                                 </td>
                             </tr>
+                            <tr>
+                                <th scope="row">Back to Top</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="bfa_elements[layout_navigation][back_to_top]" value="1" <?php checked( $settings['elements']['layout_navigation']['back_to_top'] ); ?>>
+                                        Enable Back to Top element
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Before/After Slider</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="bfa_elements[layout_navigation][slider]" value="1" <?php checked( $settings['elements']['layout_navigation']['slider'] ); ?>>
+                                        Enable Before/After Slider element
+                                    </label>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -277,7 +302,7 @@ function bfa_settings_page_html() {
 
                 <div class="bfa-settings-section">
                     <div class="bfa-section-header">
-                        <h2>Media Galleries</h2>
+                        <h2>Media & Galleries</h2>
                         <label class="bfa-toggle">
                             <input type="checkbox" 
                                    name="bfa_elements[media_galleries][enabled]" 
@@ -288,7 +313,17 @@ function bfa_settings_page_html() {
                         </label>
                     </div>
                     <div class="bfa-section-content">
-                        <p class="description">Coming soon...</p>
+                        <table class="form-table bfa-tight-table">
+                            <tr>
+                                <th scope="row">Before/After Slider</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="bfa_elements[media_galleries][slider]" value="1" <?php checked( $settings['elements']['media_galleries']['slider'] ); ?>>
+                                        Enable Before/After Slider element
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
@@ -343,7 +378,7 @@ function bfa_settings_page_html() {
         .bfa-settings-grid {
             display: grid;
             grid-template-columns: minmax(320px, 2fr) minmax(320px, 2fr);
-            gap: 75px 25px;
+            gap: 25px 25px;
             margin-bottom: 32px;
             max-width: 1000px;
             background: none;
@@ -354,7 +389,6 @@ function bfa_settings_page_html() {
             border-radius: 10px;
             box-shadow: 0 1px 3px rgba(0,0,0,0.08);
             border: 1.5px solid #e5e7eb;
-            height: 100%;
             display: flex;
             flex-direction: column;
         }
@@ -428,6 +462,10 @@ function bfa_settings_page_html() {
             color: #666;
             font-style: italic;
             margin: 0;
+        }
+        /* Add margin to submit button */
+        .wrap #submit {
+            margin-top: 20px;
         }
     </style>
 

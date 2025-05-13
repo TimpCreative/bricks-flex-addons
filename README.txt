@@ -14,32 +14,18 @@ A modular add-on pack for Bricks Builder that lets you pick and choose only the 
   - Slide from any edge
   - Nestable inner content
 
-- **Off-Canvas Drawer**
-  - Slide panels from any direction
-  - Configurable width
-  - Backdrop blur effects
-  - Keep-open-in-Builder toggle
+- **Back to Top**
+  - Smooth scroll animation
+  - Customizable appearance
+  - Show/hide based on scroll position
+  - Mobile-friendly design
 
-- **Animated Headlines**
-  - Typewriter animations
-  - Staggered text effects
-  - Highlight animations
-
-- **Interactive Images**
-  - Before/After sliders
-  - Hotspots
-  - Zoom and pan functionality
-  - Image accordions
-
-- **Sortable Tables**
-  - Filterable and searchable
-  - Pagination support
-  - Dynamic data binding
-
-- **Micro-Interactions**
-  - Custom cursor effects
-  - Reaction buttons
-  - Hover parallax effects
+- **Before/After Slider**
+  - Horizontal and vertical orientations
+  - Customizable handle styles
+  - Smooth dragging interaction
+  - Responsive design
+  - Touch device support
 
 ### Dynamic Data Tags
 
