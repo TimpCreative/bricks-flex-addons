@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Flex Addons
  * Description: Bricks Flex Addons Premium Elements
- * Version:     0.2.2-alpha
+ * Version:     0.2.3-alpha
  * Author:      Your Name
  */
 

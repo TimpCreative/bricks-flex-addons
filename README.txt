@@ -1,6 +1,6 @@
 # BricksFlexAddons
 
-[![Version](https://img.shields.io/badge/version-0.2.2--alpha-blue.svg)](https://bricksflexaddons.com)
+[![Version](https://img.shields.io/badge/version-0.2.3--alpha-blue.svg)](https://bricksflexaddons.com)
 
 A modular add-on pack for Bricks Builder that lets you pick and choose only the advanced elements you need, plus a suite of powerful dynamic data tags. Perfect for agencies and freelancers with unlimited site licenses and fair pricing.
 
