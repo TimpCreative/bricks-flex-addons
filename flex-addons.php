@@ -10,6 +10,9 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit;
 }
 
+// Define plugin version
+define( 'BFA_VERSION', '0.2.3-alpha' );
+
 if ( ! function_exists( 'bfa_plugin' ) ) {
     // Create a helper function for easy SDK access.
     function bfa_plugin() {
@@ -120,6 +123,10 @@ add_action( 'init', function() {
             'label' => 'Flex Addons Media & Galleries',
             'icon'  => 'ti-gallery',
         );
+        $cats['flex-addons-interactive'] = array(
+            'label' => 'Flex Addons Interactive',
+            'icon'  => 'ti-layout-accordion-merged',
+        );
         return $cats;
     }, 20, 1 );
 
@@ -227,6 +234,24 @@ add_action( 'init', function() {
     if ( $is_dev || bfa_plugin()->can_use_premium_code__premium_only() ) {
         if ( isset( $settings['elements']['logic_conditions']['enabled'] ) && $settings['elements']['logic_conditions']['enabled'] ) {
             $files = array();
+            foreach ( $files as $file ) {
+                if ( is_readable( $file ) ) {
+                    require_once $file;
+                    Bricks\Elements::register_element( $file );
+                }
+            }
+        }
+    }
+
+    // ─── Interactive & Animation ───
+    if ( $is_dev || bfa_plugin()->can_use_premium_code__premium_only() ) {
+        if ( isset( $settings['elements']['interactive_animation']['enabled'] ) && $settings['elements']['interactive_animation']['enabled'] ) {
+            $files = array();
+            
+            if ( isset( $settings['elements']['interactive_animation']['content_switcher'] ) && $settings['elements']['interactive_animation']['content_switcher'] ) {
+                $files[] = __DIR__ . '/includes/elements/flex-content-switcher/content-switcher.php';
+            }
+
             foreach ( $files as $file ) {
                 if ( is_readable( $file ) ) {
                     require_once $file;

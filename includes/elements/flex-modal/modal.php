@@ -16,7 +16,7 @@ class BFA_Flex_Modal extends \Bricks\Element {
 	public $icon     = 'fa-solid fa-window-maximize';
 	public $nestable = true;
 
-	public function get_label()    { return 'Flex Modal'; }
+	public function get_label()    { return 'Modal'; }
 	public function get_keywords() { return [ 'modal', 'popup', 'dialog', 'offcanvas' ]; }
 
 	/* ---------- Pre‑insert nested children ---------- */

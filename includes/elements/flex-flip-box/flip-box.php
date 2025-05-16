@@ -16,7 +16,7 @@ class BFA_Flip_Box extends \Bricks\Element {
     public $icon     = 'fa-solid fa-rotate';
     public $nestable = true;
 
-    public function get_label()    { return 'Flex Flip Box'; }
+    public function get_label()    { return 'Flip Box'; }
     public function get_keywords() { return [ 'flip', 'box', 'card', 'hover', 'animation' ]; }
 
     /* ---------- Pre‑insert nested children ---------- */

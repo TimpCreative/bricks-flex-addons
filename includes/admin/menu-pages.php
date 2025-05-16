@@ -40,7 +40,7 @@ function bfa_options_page_html() {
     }
     ?>
     <div class="wrap">
-        <h1><?php echo esc_html( get_admin_page_title() ); ?> <span style="font-size: 1rem; color: #888; font-weight: normal;">v0.2.2-alpha</span></h1>
+        <h1><?php echo esc_html( get_admin_page_title() ); ?> <span style="font-size: 1rem; color: #888; font-weight: normal;">v<?php echo esc_html( BFA_VERSION ); ?></span></h1>
         
         <div class="bfa-get-started">
             <div class="bfa-section">
@@ -132,6 +132,7 @@ function bfa_settings_page_html() {
                 ),
                 'interactive_animation' => array(
                     'enabled' => isset( $_POST['bfa_elements']['interactive_animation']['enabled'] ),
+                    'content_switcher' => isset( $_POST['bfa_elements']['interactive_animation']['content_switcher'] ),
                 ),
                 'media_galleries' => array(
                     'enabled' => isset( $_POST['bfa_elements']['media_galleries']['enabled'] ),
@@ -179,6 +180,7 @@ function bfa_settings_page_html() {
             ),
             'interactive_animation' => array(
                 'enabled' => false,
+                'content_switcher' => false,
             ),
             'media_galleries' => array(
                 'enabled' => false,
@@ -211,7 +213,7 @@ function bfa_settings_page_html() {
     ) );
     ?>
     <div class="wrap">
-        <h1><?php echo esc_html( get_admin_page_title() ); ?> <span style="font-size: 1rem; color: #888; font-weight: normal;">v0.2.2-alpha</span></h1>
+        <h1><?php echo esc_html( get_admin_page_title() ); ?> <span style="font-size: 1rem; color: #888; font-weight: normal;">v<?php echo esc_html( BFA_VERSION ); ?></span></h1>
         
         <form method="post" action="">
             <?php wp_nonce_field( 'bfa_save_settings', 'bfa_settings_nonce' ); ?>
@@ -276,15 +278,6 @@ function bfa_settings_page_html() {
                                     </label>
                                 </td>
                             </tr>
-                            <tr>
-                                <th scope="row">Before/After Slider</th>
-                                <td>
-                                    <label>
-                                        <input type="checkbox" name="bfa_elements[layout_navigation][slider]" value="1" <?php checked( $settings['elements']['layout_navigation']['slider'] ); ?>>
-                                        Enable Before/After Slider element
-                                    </label>
-                                </td>
-                            </tr>
                         </table>
                     </div>
                 </div>
@@ -302,7 +295,20 @@ function bfa_settings_page_html() {
                         </label>
                     </div>
                     <div class="bfa-section-content">
-                        <p class="description">Coming soon...</p>
+                        <table class="form-table bfa-tight-table">
+                            <tr>
+                                <th scope="row">Content Switcher</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" 
+                                               name="bfa_elements[interactive_animation][content_switcher]" 
+                                               value="1" 
+                                               <?php checked( isset($settings['elements']['interactive_animation']['content_switcher']) ? $settings['elements']['interactive_animation']['content_switcher'] : false ); ?>>
+                                        Enable Content Switcher element
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 

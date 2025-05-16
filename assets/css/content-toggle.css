@@ -1,0 +1,151 @@
+/* Content Switcher Root */
+.brxe-flex-content-switcher {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: flex-start;
+    width: 100%;
+    --toggle-radius: 8px;
+    --toggle-size: 40px;
+}
+
+/* Buttons Style */
+.bfa-toggle-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    justify-content: var(--toggle-justify, flex-start);
+    width: 100%;
+}
+
+.brxe-flex-content-switcher .bfa-toggle-button {
+    padding: 8px 20px;
+    border: 2px solid transparent;
+    border-radius: var(--toggle-radius);
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1em;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.brxe-flex-content-switcher .bfa-toggle-button[data-style="pill"] {
+    border-radius: 50px;
+}
+.brxe-flex-content-switcher .bfa-toggle-button[data-style="rounded"] {
+    border-radius: var(--toggle-radius);
+}
+.brxe-flex-content-switcher .bfa-toggle-button[data-style="square"] {
+    border-radius: 4px;
+}
+
+.brxe-flex-content-switcher .bfa-toggle-button:hover,
+.brxe-flex-content-switcher .bfa-toggle-button:focus {
+    background: #fffbe6;
+    color: #222;
+    border-color: #e6a800;
+}
+
+.brxe-flex-content-switcher .bfa-toggle-button.active {
+    color: #fff;
+    /* Active button typography will be set by Bricks if configured */
+}
+
+/* Switch Style */
+.bfa-toggle-wrapper {
+    display: flex;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.bfa-toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: var(--toggle-size);
+    height: calc(var(--toggle-size) * 0.5);
+    cursor: pointer;
+    background: transparent;
+}
+
+.bfa-toggle-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.bfa-toggle-slider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: calc(var(--toggle-size) * 0.25);
+}
+
+.bfa-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: calc(var(--toggle-size) * 0.4);
+    width: calc(var(--toggle-size) * 0.4);
+    left: calc(var(--toggle-size) * 0.05);
+    bottom: calc(var(--toggle-size) * 0.05);
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+.bfa-toggle-input:checked + .bfa-toggle-slider {
+    /* Will be set inline or via JS for active color */
+}
+
+.bfa-toggle-input:checked + .bfa-toggle-slider:before {
+    transform: translateX(calc(var(--toggle-size) * 0.5));
+}
+
+/* Content Wrapper */
+.bfa-content-wrapper {
+    position: relative;
+    width: 100%;
+    min-height: 60px;
+}
+
+.bfa-content-item {
+    display: none;
+    background: #fff;
+    border-radius: var(--toggle-radius);
+    border: 1px solid #eee;
+    padding: 24px 20px;
+    box-sizing: border-box;
+    color: #222;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.bfa-content-item.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bfa-content-item.no-transition {
+    transition: none !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .bfa-content-item {
+        padding: 14px 8px;
+    }
+    .bfa-toggle-button {
+        padding: 7px 12px;
+        font-size: 0.97rem;
+    }
+    .bfa-toggle-switch {
+        --toggle-size: 36px;
+    }
+} 
