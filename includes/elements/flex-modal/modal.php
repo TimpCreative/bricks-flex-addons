@@ -13,7 +13,7 @@ class BFA_Flex_Modal extends \Bricks\Element {
 	/* ---------- Meta ---------- */
 	public $category = 'Flex Addons Layout';
 	public $name     = 'flex-modal';
-	public $icon     = 'fa-solid fa-window-maximize';
+	public $icon     = 'fa-regular fa-window-maximize';
 	public $nestable = true;
 
 	public function get_label()    { return 'Modal'; }
