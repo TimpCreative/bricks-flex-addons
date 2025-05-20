@@ -129,6 +129,7 @@ function bfa_settings_page_html() {
                     'style_card' => isset( $_POST['bfa_elements']['layout_navigation']['style_card'] ),
                     'back_to_top' => isset( $_POST['bfa_elements']['layout_navigation']['back_to_top'] ),
                     'slider' => isset( $_POST['bfa_elements']['layout_navigation']['slider'] ),
+                    'easy_header' => isset( $_POST['bfa_elements']['layout_navigation']['easy_header'] ),
                 ),
                 'interactive_animation' => array(
                     'enabled' => isset( $_POST['bfa_elements']['interactive_animation']['enabled'] ),
@@ -177,6 +178,7 @@ function bfa_settings_page_html() {
                 'style_card' => true,
                 'back_to_top' => true,
                 'slider' => false,
+                'easy_header' => true,
             ),
             'interactive_animation' => array(
                 'enabled' => false,
@@ -241,7 +243,7 @@ function bfa_settings_page_html() {
                                                name="bfa_elements[layout_navigation][modal]" 
                                                value="1" 
                                                <?php checked( $settings['elements']['layout_navigation']['modal'] ); ?>>
-                                        Enable Modal element
+                                        Enable Modal
                                     </label>
                                 </td>
                             </tr>
@@ -253,7 +255,7 @@ function bfa_settings_page_html() {
                                                name="bfa_elements[layout_navigation][flip_box]" 
                                                value="1" 
                                                <?php checked( $settings['elements']['layout_navigation']['flip_box'] ); ?>>
-                                        Enable Flip Box element
+                                        Enable Flip Box
                                     </label>
                                 </td>
                             </tr>
@@ -265,7 +267,7 @@ function bfa_settings_page_html() {
                                                name="bfa_elements[layout_navigation][style_card]" 
                                                value="1" 
                                                <?php checked( $settings['elements']['layout_navigation']['style_card'] ); ?>>
-                                        Enable Stylable Card element
+                                        Enable Stylable Card
                                     </label>
                                 </td>
                             </tr>
@@ -274,7 +276,16 @@ function bfa_settings_page_html() {
                                 <td>
                                     <label>
                                         <input type="checkbox" name="bfa_elements[layout_navigation][back_to_top]" value="1" <?php checked( $settings['elements']['layout_navigation']['back_to_top'] ); ?>>
-                                        Enable Back to Top element
+                                        Enable Back to Top
+                                    </label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Easy Header</th>
+                                <td>
+                                    <label>
+                                        <input type="checkbox" name="bfa_elements[layout_navigation][easy_header]" value="1" <?php checked( $settings['elements']['layout_navigation']['easy_header'] ); ?>>
+                                        Enable Easy Header
                                     </label>
                                 </td>
                             </tr>
@@ -304,7 +315,7 @@ function bfa_settings_page_html() {
                                                name="bfa_elements[interactive_animation][content_switcher]" 
                                                value="1" 
                                                <?php checked( isset($settings['elements']['interactive_animation']['content_switcher']) ? $settings['elements']['interactive_animation']['content_switcher'] : false ); ?>>
-                                        Enable Content Switcher element
+                                        Enable Content Switcher
                                     </label>
                                 </td>
                             </tr>
@@ -331,7 +342,7 @@ function bfa_settings_page_html() {
                                 <td>
                                     <label>
                                         <input type="checkbox" name="bfa_elements[media_galleries][slider]" value="1" <?php checked( $settings['elements']['media_galleries']['slider'] ); ?>>
-                                        Enable Before/After Slider element
+                                        Enable Before/After Slider
                                     </label>
                                 </td>
                             </tr>

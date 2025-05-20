@@ -150,6 +150,9 @@ add_action( 'init', function() {
             if ( isset( $settings['elements']['layout_navigation']['back_to_top'] ) && $settings['elements']['layout_navigation']['back_to_top'] ) {
                 $files[] = __DIR__ . '/includes/elements/flex-back-to-top/back-to-top.php';
             }
+            if ( isset( $settings['elements']['layout_navigation']['easy_header'] ) && $settings['elements']['layout_navigation']['easy_header'] ) {
+                $files[] = __DIR__ . '/includes/elements/flex-easy-header/easy-header.php';
+            }
 
             foreach ( $files as $file ) {
                 if ( is_readable( $file ) ) {

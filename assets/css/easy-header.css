@@ -1,0 +1,295 @@
+/* Easy Header Styles */
+.bfa-easy-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    z-index: 1000;
+}
+
+/* Logo */
+.bfa-easy-header-logo {
+    display: flex;
+    align-items: center;
+}
+
+.bfa-easy-header-logo img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Menu */
+.bfa-easy-header-menu {
+    display: flex;
+    align-items: center;
+}
+
+.bfa-easy-header-menu-items {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.bfa-easy-header-menu-items li {
+    position: relative;
+    margin: 0;
+}
+
+.bfa-easy-header-menu-items a {
+    display: block;
+    text-decoration: none;
+    padding: 0.5em 1em;
+    transition: color 0.3s ease;
+}
+
+/* Search */
+.bfa-easy-header-search {
+    position: relative;
+}
+
+.bfa-easy-header-search .search-form {
+    display: flex;
+    align-items: center;
+}
+
+.bfa-easy-header-search .search-field {
+    padding: 0.5em 1em;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-right: 0.5em;
+    transition: all 0.3s ease;
+}
+
+.bfa-easy-header-search .search-submit {
+    background: none;
+    border: none;
+    padding: 0.5em;
+    cursor: pointer;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.bfa-easy-header-search .search-submit:hover {
+    color: #2271b1;
+}
+
+/* Custom Links */
+.bfa-easy-header-custom-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.bfa-easy-header-custom-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.bfa-easy-header-custom-link i {
+    font-size: 1.1em;
+}
+
+/* Hide custom links on mobile when showCustomLinksInMobile is enabled */
+@media (max-width: 767px) {
+    .bfa-easy-header-custom-links.bfa-hide-on-mobile {
+        display: none;
+    }
+}
+
+/* Mobile Menu Custom Links */
+.bfa-easy-header-mobile-custom-links {
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bfa-easy-header-mobile-custom-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.bfa-easy-header-mobile-custom-link i {
+    font-size: 1.1em;
+}
+
+/* Mobile Menu Content */
+.bfa-easy-header-mobile-menu-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow-y: auto;
+    padding-bottom: 1rem;
+    gap: 1rem;
+}
+
+/* Mobile Menu Items */
+.bfa-easy-header-mobile-menu-items {
+    list-style: none;
+    margin: 0;
+    padding: 1rem;
+}
+
+.bfa-easy-header-mobile-menu-items li {
+    margin: 0;
+    padding: 0;
+}
+
+.bfa-easy-header-mobile-menu-items a {
+    display: block;
+    padding: 0.75rem 0;
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+/* Mobile Search */
+.bfa-easy-header-mobile-search {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: auto;
+    width: 100%;
+}
+
+.bfa-easy-header-mobile-search-field {
+    flex: 1;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    color: inherit;
+    width: 100%;
+    min-width: 0;
+}
+
+.bfa-easy-header-mobile-search-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    border: none;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    min-width: 40px;
+    flex-shrink: 0;
+}
+
+.bfa-easy-header-mobile-search-submit:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Mobile Toggle Button */
+.bfa-easy-header-mobile-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5em;
+    cursor: pointer;
+    color: inherit;
+    z-index: 1002;
+    transition: color 0.3s ease;
+}
+
+.bfa-easy-header-mobile-toggle i {
+    font-size: 24px;
+    line-height: 1;
+}
+
+.bfa-easy-header-mobile-toggle.active {
+    color: #2271b1;
+}
+
+/* Mobile Menu */
+.bfa-easy-header-mobile-menu {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    height: calc(var(--bricks-vh, 1vh) * 100);
+    z-index: 999;
+}
+
+.show .bfa-easy-header-mobile-menu, .bfa-easy-header-mobile-menu.brx-open {
+    visibility: visible;
+}
+
+.show .bfa-easy-header-mobile-menu-inner, .bfa-easy-header-mobile-menu-inner.brx-open {
+    transform: translate(0) !important;
+}
+
+.bfa-easy-header-mobile-menu-inner {
+    background: #fff;
+    padding: 2em;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s cubic-bezier(0.25, 0, 0.25, 1);
+}
+
+.bfa-easy-header[data-mobile-position="right"] .bfa-easy-header-mobile-menu-inner {
+    right: 0;
+    transform: translate(100%);
+}
+
+.bfa-easy-header[data-mobile-position="left"] .bfa-easy-header-mobile-menu-inner {
+    left: 0;
+    transform: translate(-100%);
+}
+
+/* Mobile Styles */
+@media (max-width: 767px) {
+    .bfa-easy-header-menu,
+    .bfa-easy-header-search {
+        display: none;
+    }
+
+    .bfa-easy-header-mobile-toggle {
+        display: block;
+    }
+
+    .bfa-easy-header-mobile-menu {
+        visibility: visible;
+    }
+
+    /* Adjust layout for mobile */
+    .bfa-easy-header {
+        justify-content: space-between;
+    }
+
+    /* Prevent body scroll when mobile menu is open */
+    body.bfa-mobile-menu-open {
+        overflow: hidden;
+    }
+}
+
+/* Screen Reader Text */
+.screen-reader-text {
+    border: 0;
+    clip: rect(1px, 1px, 1px, 1px);
+    clip-path: inset(50%);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    word-wrap: normal !important;
+} 
